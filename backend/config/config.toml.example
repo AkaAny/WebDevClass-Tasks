@@ -1,0 +1,17 @@
+[DB]
+[DB.Task]
+Address="localhost:3306"
+UserName="webdevclass_tasks"
+Password="webdevclass_tasks"
+DBName="webdevclass_tasks"
+[Mail]
+[Mail.UserActive]
+ServerHost="smtp.qq.com"
+ServerPort=587
+UserName="[your email address]"
+Password="[your password]"
+[Mail.ResetPassword]
+ServerHost="smtp.qq.com"
+ServerPort=587
+UserName="[your email address]"
+Password="[your password]"

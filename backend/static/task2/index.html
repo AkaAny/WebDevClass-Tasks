@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task2</title>
+</head>
+<body>
+<div>
+  <a href="register.html">Register</a>
+</div>
+<div>
+    <a href="login.html">Login</a>
+</div>
+<div>
+    <button onclick="showUserInfo()">User Info</button>
+</div>
+<script>
+    function showUserInfo(){
+        const token=window.localStorage.getItem('accessToken');
+        fetch("http://localhost:8082/task2/user/self/html",{
+            method:"GET",
+            headers:{
+                "Authorization":token,
+            }
+        }).then((resp)=>{
+            if(resp.status!==200){
+                throw `invalid status:${resp.status}`;
+            }
+            return resp.text()
+        }).then((html)=>{
+            document.clear();
+            document.write(html);
+        })
+    }
+</script>
+</body>
+</html>

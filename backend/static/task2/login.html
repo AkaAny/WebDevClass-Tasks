@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<div>
+  <div>
+    Mail <input id="txtMail"/>
+  </div>
+  <div>
+    Password <input id="txtPassword"/>
+  </div>
+  <button onclick="login()">登录</button>
+</div>
+<script src="md5.js"></script>
+<script>
+  function login(){
+    const password=document.getElementById("txtPassword").value;
+    const data={
+      mail:document.getElementById("txtMail").value,
+      password:md5(password),
+    }
+    const url="http://localhost:8082/task2/token/login"
+    fetch(url,{
+      method:"POST",
+      body:JSON.stringify(data),
+    }).then((resp)=>{
+      if(resp.status!==200){
+        throw `unexpected status:${resp.status}`;
+      }
+      alert("success");
+        return resp.json();
+    }).then((data)=>{
+        const token=data.data.token;
+        window.localStorage.setItem('accessToken',token);
+        window.location.href="index.html";
+    })
+  }
+</script>
+</body>
+</html>
